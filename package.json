@@ -1,0 +1,10 @@
+{
+  "name": "haui-project-tracking-api",
+  "version": "1.0.0",
+  "description": "haui-project-tracking-api",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
