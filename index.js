@@ -4,6 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 
 const errorHandler = require("./middlewares/errorHandler");
+const validationHandler = require("./middlewares/validationHandler");
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -14,6 +15,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(validationHandler);
 
 app.use(errorHandler);
 
