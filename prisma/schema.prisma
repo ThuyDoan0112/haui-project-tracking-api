@@ -6,3 +6,19 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique @db.VarChar(255)
+  name        String  @db.VarChar(55)
+  password    String  @db.VarChar(255)
+  studentCode String? @unique @map("student_code") @db.VarChar(10)
+  role        Role    @default(user)
+
+  @@map("user")
+}
+
+enum Role {
+  user
+  admin
+}
