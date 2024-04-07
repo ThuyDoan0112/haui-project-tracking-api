@@ -3,6 +3,7 @@ const catchAsyncError = require("../utils/catchAsyncError");
 const userService = require("../services/user");
 const jwtService = require("../services/jwt");
 const bcryptService = require("../services/bcrypt");
+const { excludeFields } = require("../utils/prisma");
 
 const login = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
@@ -35,6 +36,12 @@ const login = catchAsyncError(async (req, res, next) => {
   });
 });
 
+const getAuthUser = catchAsyncError(async (req, res, next) => {
+  const userWithoutPassword = excludeFields(req.user, ["password"]);
+  res.status(200).json(userWithoutPassword);
+});
+
 module.exports = {
   login,
+  getAuthUser,
 };
