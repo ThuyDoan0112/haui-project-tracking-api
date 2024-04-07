@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
+const authRouter = require("./routes/auth");
 const errorHandler = require("./middlewares/errorHandler");
 const validationHandler = require("./middlewares/validationHandler");
 
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(validationHandler);
+
+app.use("/api/v1/auth", authRouter);
 
 app.use(errorHandler);
 
