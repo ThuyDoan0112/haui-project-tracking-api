@@ -6,6 +6,13 @@ const findUserByEmail = (email) => {
   });
 };
 
+const getUserById = (id) => {
+  return prisma.user.findUnique({
+    where: { id },
+  });
+};
+
 module.exports = {
+  getUserById,
   findUserByEmail,
 };
