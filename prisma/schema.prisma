@@ -15,7 +15,25 @@ model User {
   studentCode String? @unique @map("student_code") @db.VarChar(10)
   role        Role    @default(user)
 
+  classes Class[]
+
   @@map("user")
+}
+
+model Class {
+  id          Int       @id @default(autoincrement())
+  code        String    @unique @db.VarChar(20)
+  name        String    @db.VarChar(255)
+  description String?   @db.VarChar(255)
+  teacherId   Int?      @map("teacher_id")
+  startDate   DateTime  @map("start_date") @db.Date
+  endDate     DateTime  @map("end_date") @db.Date
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt
+
+  teacher User? @relation(fields: [teacherId], references: [id])
+
+  @@map("class")
 }
 
 enum Role {
