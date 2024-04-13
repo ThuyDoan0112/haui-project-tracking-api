@@ -41,7 +41,16 @@ const getAuthUser = catchAsyncError(async (req, res, next) => {
   res.status(200).json(userWithoutPassword);
 });
 
+const logout = catchAsyncError(async (req, res, next) => {
+  res.clearCookie("accessToken");
+
+  res.status(200).json({
+    message: "OK",
+  });
+});
+
 module.exports = {
   login,
+  logout,
   getAuthUser,
 };
