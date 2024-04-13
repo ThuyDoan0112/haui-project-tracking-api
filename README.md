@@ -12,6 +12,11 @@ npm install
 cp .env.template .env
 ```
 
+```bash
+# run database migration
+npx prisma migrate dev
+```
+
 ## `Start server`
 
 ```bash
