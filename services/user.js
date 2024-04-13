@@ -12,7 +12,14 @@ const getUserById = (id) => {
   });
 };
 
+const createUser = (data) => {
+  return prisma.user.create({
+    data,
+  });
+};
+
 module.exports = {
+  createUser,
   getUserById,
   findUserByEmail,
 };
