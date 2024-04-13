@@ -8,6 +8,9 @@ const router = express.Router();
 
 router.use(authMiddleware);
 
-router.post("/", restrictTo("admin", "teacher"), userController.createUser);
+router.use(restrictTo("admin", "teacher"));
+
+router.get("/", userController.getUsers);
+router.post("/", userController.createUser);
 
 module.exports = router;
