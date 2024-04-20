@@ -12,8 +12,18 @@ const createClass = (data) => {
   });
 };
 
-const getClasses = () => {
-  return prisma.class.findMany();
+const getClasses = (query) => {
+  return prisma.class.findMany({
+    where: query,
+    include: {
+      teacher: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
 };
 
 module.exports = {
