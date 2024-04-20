@@ -6,6 +6,13 @@ const createProjectSource = async (data) => {
   });
 };
 
+const getProjectSources = async (query = {}) => {
+  return await prisma.projectSource.findMany({
+    where: query,
+  });
+};
+
 module.exports = {
+  getProjectSources,
   createProjectSource,
 };

@@ -27,6 +27,18 @@ const createProjectSource = catchAsyncError(async (req, res, next) => {
   res.status(201).json(projectSource);
 });
 
+const getProjectSources = catchAsyncError(async (req, res, next) => {
+  const { projectId, type } = req.query;
+
+  const projectSources = await projectSourceService.getProjectSources({
+    projectId: projectId ? +projectId : undefined,
+    type,
+  });
+
+  res.status(200).json(projectSources);
+});
+
 module.exports = {
+  getProjectSources,
   createProjectSource,
 };
