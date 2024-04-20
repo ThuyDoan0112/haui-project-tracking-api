@@ -4,7 +4,9 @@ const classController = require("../controllers/class");
 const authMiddleware = require("../middlewares/auth");
 const restrictTo = require("../middlewares/role");
 
-const router = express.Router();
+const router = express.Router({
+  mergeParams: true,
+});
 
 router.use(authMiddleware);
 router.get("/", classController.getClasses);
