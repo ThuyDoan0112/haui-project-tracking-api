@@ -36,6 +36,15 @@ model Class {
   @@map("class")
 }
 
+model Document {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.VarChar(255)
+  path        String  @db.VarChar(255)
+
+  @@map("document")
+}
+
 enum Role {
   user
   admin
