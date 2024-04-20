@@ -7,6 +7,18 @@ const createDocumentsOnClasses = (data) => {
   });
 };
 
+const getDocumentsOnClasses = (classId) => {
+  return prisma.documentsOnClasses.findMany({
+    where: {
+      classId,
+    },
+    include: {
+      document: true,
+    },
+  });
+};
+
 module.exports = {
   createDocumentsOnClasses,
+  getDocumentsOnClasses,
 };

@@ -2,6 +2,17 @@ const documentsOnClassesService = require("../services/documentsOnClasses");
 const classService = require("../services/class");
 const catchAsyncError = require("../utils/catchAsyncError");
 
+const getDocumentsOnClasses = catchAsyncError(async (req, res) => {
+  const classId = req.query.classId;
+  if (!classId) {
+    return next(new AppError("Class ID is required", 400));
+  }
+
+  const documentsOnClasses =
+    await documentsOnClassesService.getDocumentsOnClasses(+classId);
+  res.status(200).json(documentsOnClasses);
+});
+
 const createDocumentsOnClasses = catchAsyncError(async (req, res) => {
   const { classId, documentIds } = req.body;
 
@@ -26,5 +37,6 @@ const createDocumentsOnClasses = catchAsyncError(async (req, res) => {
 });
 
 module.exports = {
+  getDocumentsOnClasses,
   createDocumentsOnClasses,
 };
