@@ -23,7 +23,20 @@ const getClasses = catchAsyncError(async (req, res, next) => {
   res.status(200).json(classes);
 });
 
+const getClass = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params;
+
+  const classDetail = await classService.getClass(+id);
+
+  if (!classDetail) {
+    return next(new AppError("Class not found", 404));
+  }
+
+  res.status(200).json(classDetail);
+});
+
 module.exports = {
   createClass,
   getClasses,
+  getClass,
 };

@@ -9,6 +9,8 @@ const router = express.Router({
 });
 
 router.use(authMiddleware);
+
+router.get("/:id", classController.getClass);
 router.get("/", classController.getClasses);
 router.post("/", restrictTo("admin"), classController.createClass);
 

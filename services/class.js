@@ -26,7 +26,24 @@ const getClasses = (query) => {
   });
 };
 
+const getClass = (id) => {
+  return prisma.class.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      teacher: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+};
+
 module.exports = {
   createClass,
   getClasses,
+  getClass,
 };
