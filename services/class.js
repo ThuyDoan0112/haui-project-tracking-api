@@ -12,6 +12,11 @@ const createClass = (data) => {
   });
 };
 
+const getClasses = () => {
+  return prisma.class.findMany();
+};
+
 module.exports = {
   createClass,
+  getClasses,
 };

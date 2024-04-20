@@ -7,7 +7,7 @@ const restrictTo = require("../middlewares/role");
 const router = express.Router();
 
 router.use(authMiddleware);
-
+router.get("/", classController.getClasses);
 router.post("/", restrictTo("admin"), classController.createClass);
 
 module.exports = router;
