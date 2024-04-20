@@ -3,6 +3,7 @@ const {
   LOGIN_API_KEY,
   CREATE_USER_API_KEY,
   CREATE_CLASS_API_KEY,
+  UPDATE_CLASS_API_KEY,
 } = require("../constants");
 
 module.exports = {
@@ -26,4 +27,12 @@ module.exports = {
     startDate: Joi.string().isoDate().required(),
     endDate: Joi.string().isoDate().required(),
   }),
+  [UPDATE_CLASS_API_KEY]: Joi.object({
+    name: Joi.string().max(255).optional(),
+    code: Joi.string().max(20).optional(),
+    description: Joi.string().max(255).optional(),
+    teacherId: Joi.number().optional(),
+    startDate: Joi.string().isoDate().optional(),
+    endDate: Joi.string().isoDate().optional(),
+  }).not({}),
 };

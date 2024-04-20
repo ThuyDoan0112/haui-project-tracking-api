@@ -12,6 +12,8 @@ router.use(authMiddleware);
 
 router.get("/:id", classController.getClass);
 router.get("/", classController.getClasses);
+
+router.patch("/:id", classController.updateClass);
 router.post("/", restrictTo("admin"), classController.createClass);
 
 module.exports = router;

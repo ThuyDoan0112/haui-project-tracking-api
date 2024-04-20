@@ -42,8 +42,26 @@ const getClass = (id) => {
   });
 };
 
+const updateClass = (id, data) => {
+  return prisma.class.update({
+    where: {
+      id,
+    },
+    include: {
+      teacher: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+    data,
+  });
+};
+
 module.exports = {
   createClass,
   getClasses,
   getClass,
+  updateClass,
 };
