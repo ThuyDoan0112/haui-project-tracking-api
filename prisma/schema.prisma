@@ -31,7 +31,8 @@ model Class {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime? @updatedAt
 
-  teacher User? @relation(fields: [teacherId], references: [id])
+  teacher            User?                @relation(fields: [teacherId], references: [id])
+  documentsOnClasses DocumentsOnClasses[]
 
   @@map("class")
 }
@@ -42,7 +43,20 @@ model Document {
   description String? @db.VarChar(255)
   path        String  @db.VarChar(255)
 
+  documentsOnClasses DocumentsOnClasses[]
+
   @@map("document")
+}
+
+model DocumentsOnClasses {
+  documentId Int @map("document_id")
+  classId    Int @map("class_id")
+
+  document Document @relation(fields: [documentId], references: [id])
+  class    Class    @relation(fields: [classId], references: [id])
+
+  @@id([documentId, classId])
+  @@map("documents_on_classes")
 }
 
 enum Role {
