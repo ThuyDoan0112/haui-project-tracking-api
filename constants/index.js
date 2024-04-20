@@ -8,10 +8,13 @@ const UPDATE_CLASS_API_KEY = "^PATCH_/api/v1/classes/[0-9]+$";
 
 const REQUEST_USER_KEY = "user";
 
+const FILE_UPLOAD_MAX_COUNT = 5;
+
 module.exports = {
   LOGIN_API_KEY,
   CREATE_USER_API_KEY,
   CREATE_CLASS_API_KEY,
   UPDATE_CLASS_API_KEY,
   REQUEST_USER_KEY,
+  FILE_UPLOAD_MAX_COUNT,
 };
