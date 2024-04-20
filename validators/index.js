@@ -4,6 +4,7 @@ const {
   CREATE_USER_API_KEY,
   CREATE_CLASS_API_KEY,
   UPDATE_CLASS_API_KEY,
+  CREATE_DOCUMENTS_ON_CLASSES_API_KEY,
 } = require("../constants");
 
 module.exports = {
@@ -35,4 +36,8 @@ module.exports = {
     startDate: Joi.string().isoDate().optional(),
     endDate: Joi.string().isoDate().optional(),
   }).not({}),
+  [CREATE_DOCUMENTS_ON_CLASSES_API_KEY]: Joi.object({
+    classId: Joi.number().required(),
+    documentIds: Joi.array().items(Joi.number().required()).required(),
+  }),
 };
