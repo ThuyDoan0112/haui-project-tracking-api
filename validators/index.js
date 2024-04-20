@@ -4,6 +4,7 @@ const {
   CREATE_USER_API_KEY,
   CREATE_CLASS_API_KEY,
   UPDATE_CLASS_API_KEY,
+  CREATE_PROJECT_SOURCE_API_KEY,
   CREATE_DOCUMENTS_ON_CLASSES_API_KEY,
 } = require("../constants");
 
@@ -39,5 +40,12 @@ module.exports = {
   [CREATE_DOCUMENTS_ON_CLASSES_API_KEY]: Joi.object({
     classId: Joi.number().required(),
     documentIds: Joi.array().items(Joi.number().required()).required(),
+  }),
+  [CREATE_PROJECT_SOURCE_API_KEY]: Joi.object({
+    name: Joi.string().max(255).required(),
+    description: Joi.string().max(255).optional(),
+    path: Joi.string().required(),
+    type: Joi.string().valid("code", "report").required(),
+    projectId: Joi.number().required(),
   }),
 };

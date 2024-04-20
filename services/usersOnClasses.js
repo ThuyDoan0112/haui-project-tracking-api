@@ -17,6 +17,13 @@ const createUsersOnClasses = async (data) => {
   });
 };
 
+const getUsersOnClasses = async (query) => {
+  return prisma.usersOnClasses.findMany({
+    where: query,
+  });
+};
+
 module.exports = {
+  getUsersOnClasses,
   createUsersOnClasses,
 };
