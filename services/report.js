@@ -12,6 +12,9 @@ const createReports = async (reports) => {
 const getReports = async (query) => {
   return prisma.report.findMany({
     where: query,
+    include: {
+      tasks: true,
+    }
   });
 };
 
