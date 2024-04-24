@@ -4,8 +4,22 @@ const usersOnClassesService = require("../services/usersOnClasses");
 const excelService = require("../services/excel");
 const classService = require("../services/class");
 const bcryptService = require("../services/bcrypt");
+const prisma = require("../prisma");
 
 const getUsersOnClasses = catchAsyncError(async (req, res) => {
+  if(req.params.id){
+    const usersOnClasses = await prisma.usersOnClasses.findMany({
+      where: {
+        userId: +req.params.id,
+      },
+      include: {
+        class: true
+      }
+    });
+
+    return res.status(200).json(usersOnClasses.map((userOnClass) => userOnClass.class));
+  }
+
   const classId = req.query.classId;
   if (!classId) {
     return next(new AppError("Class ID is required", 400));
