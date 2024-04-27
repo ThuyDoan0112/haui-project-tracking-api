@@ -9,6 +9,13 @@ const createReports = async (reports) => {
   return { count };
 };
 
+const getReports = async (query) => {
+  return prisma.report.findMany({
+    where: query,
+  });
+};
+
 module.exports = {
+  getReports,
   createReports,
 };
