@@ -10,6 +10,7 @@ const router = express.Router({
 
 router.use(authMiddleware);
 
+router.get('/', usersOnClassesController.getUsersOnClasses);
 router.post(
   "/",
   uploadMiddleware.single("sheet"),

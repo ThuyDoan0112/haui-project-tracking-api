@@ -20,6 +20,17 @@ const createUsersOnClasses = async (data) => {
 const getUsersOnClasses = async (query) => {
   return prisma.usersOnClasses.findMany({
     where: query,
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          studentCode: true,
+        },
+      },
+      project: true,
+    },
   });
 };
 

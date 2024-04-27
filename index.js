@@ -10,6 +10,7 @@ const classRouter = require("./routes/class");
 const projectRouter = require("./routes/project");
 const documentRouter = require("./routes/document");
 const projectSourceRouter = require("./routes/projectSource");
+const usersOnClassesRouter = require("./routes/usersOnClasses");
 const documentsOnClassesRouter = require("./routes/documentsOnClasses");
 const errorHandler = require("./middlewares/errorHandler");
 const validationHandler = require("./middlewares/validationHandler");
@@ -35,6 +36,7 @@ app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/reports", reportRouter);
 app.use("/api/v1/project-sources", projectSourceRouter);
 app.use("/api/v1/documents-on-classes", documentsOnClassesRouter);
+app.use('/api/v1/users-on-classes', usersOnClassesRouter);
 
 app.use(errorHandler);
 

@@ -5,6 +5,19 @@ const excelService = require("../services/excel");
 const classService = require("../services/class");
 const bcryptService = require("../services/bcrypt");
 
+const getUsersOnClasses = catchAsyncError(async (req, res) => {
+  const classId = req.query.classId;
+  if (!classId) {
+    return next(new AppError("Class ID is required", 400));
+  }
+
+  const usersOnClasses = await usersOnClassesService.getUsersOnClasses({
+    classId: +classId,
+  });
+  
+  res.status(200).json(usersOnClasses);
+})
+
 const createUsersOnClasses = catchAsyncError(async (req, res, next) => {
   const { id: classId } = req.params;
 
@@ -63,5 +76,6 @@ const createUsersOnClasses = catchAsyncError(async (req, res, next) => {
 });
 
 module.exports = {
+  getUsersOnClasses,
   createUsersOnClasses,
 };
