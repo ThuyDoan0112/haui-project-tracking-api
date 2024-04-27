@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const reportRouter = require("./routes/report");
 const classRouter = require("./routes/class");
 const documentRouter = require("./routes/document");
 const projectSourceRouter = require("./routes/projectSource");
@@ -29,6 +30,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/classes", classRouter);
 app.use("/api/v1/documents", documentRouter);
+app.use("/api/v1/reports", reportRouter);
 app.use("/api/v1/project-sources", projectSourceRouter);
 app.use("/api/v1/documents-on-classes", documentsOnClassesRouter);
 

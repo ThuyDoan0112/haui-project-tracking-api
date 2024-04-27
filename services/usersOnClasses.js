@@ -23,7 +23,25 @@ const getUsersOnClasses = async (query) => {
   });
 };
 
+const getUsersOnClassesByProjectIds = async (projectIds) => {
+  return prisma.usersOnClasses.findFirst({
+    where: {
+      projectId: {
+        in: projectIds,
+      },
+    },
+    include: {
+      class: {
+        select: {
+          teacherId: true,
+        },
+      },
+    },
+  });
+};
+
 module.exports = {
   getUsersOnClasses,
   createUsersOnClasses,
+  getUsersOnClassesByProjectIds,
 };
