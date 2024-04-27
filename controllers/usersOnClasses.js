@@ -68,14 +68,7 @@ const createUsersOnClasses = catchAsyncError(async (req, res, next) => {
         user: {
           connectOrCreate: {
             where: {
-              OR: [
-                {
-                  email,
-                },
-                {
-                  studentCode: studentCode.toString(),
-                },
-              ]
+              email,
             },
             create: {
               name,
