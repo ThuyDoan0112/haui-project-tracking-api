@@ -13,11 +13,15 @@ const getUsersOnClasses = catchAsyncError(async (req, res) => {
         userId: +req.params.id,
       },
       include: {
-        class: true
+        class: true,
+        project: true,
       }
     });
 
-    return res.status(200).json(usersOnClasses.map((userOnClass) => userOnClass.class));
+    return res.status(200).json(usersOnClasses.map((userOnClass) => ({
+      ...userOnClass.class,
+      project: userOnClass.project,
+    })));
   }
 
   const classId = req.query.classId;

@@ -11,5 +11,6 @@ router.use(authMiddleware);
 
 router.get("/", reportController.getReports);
 router.post("/", reportController.createReports);
+router.put("/:id", reportController.updateReport);
 
 module.exports = router;

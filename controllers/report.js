@@ -2,6 +2,7 @@ const catchAsyncError = require("../utils/catchAsyncError");
 const reportService = require("../services/report");
 const usersOnClassesService = require("../services/usersOnClasses");
 const AppError = require("../utils/AppError");
+const prisma = require("../prisma");
 
 const getReports = catchAsyncError(async (req, res, next) => {
   const { id: projectId } = req.params;
@@ -44,7 +45,19 @@ const createReports = catchAsyncError(async (req, res, next) => {
   res.status(201).json({ count });
 });
 
+const updateReport = catchAsyncError(async (req, res, next) => {
+  const report = await prisma.report.update({
+    where: {
+      id: +req.params.id,
+    },
+    data: req.body,
+  })
+
+  res.status(200).json(report)
+})
+
 module.exports = {
   getReports,
   createReports,
+  updateReport
 };

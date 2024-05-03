@@ -46,7 +46,6 @@ module.exports = {
     name: Joi.string().max(255).required(),
     description: Joi.string().max(255).optional(),
     path: Joi.string().required(),
-    type: Joi.string().valid("code", "report").required(),
     projectId: Joi.number().required(),
   }),
   [CREATE_REPORTS_API_KEY]: Joi.object({
