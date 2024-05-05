@@ -66,12 +66,24 @@ const createUsersOnClasses = catchAsyncError(async (req, res, next) => {
     ({ name, studentCode, email, projectName, projectDescription }) => {
       return usersOnClassesService.createUsersOnClasses({
         user: {
-          create: {
-            name,
-            email,
-            password,
-            studentCode: studentCode.toString(),
-          },
+          connectOrCreate: {
+            where: {
+              OR: [
+                {
+                  email,
+                },
+                {
+                  studentCode: studentCode.toString(),
+                },
+              ]
+            },
+            create: {
+              name,
+              email,
+              password,
+              studentCode: studentCode.toString(),
+            },
+          }
         },
         project: {
           create: {
