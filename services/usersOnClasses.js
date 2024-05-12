@@ -29,7 +29,15 @@ const getUsersOnClasses = async (query) => {
           studentCode: true,
         },
       },
-      project: true,
+      project: {
+        include: {
+          reports: {
+            include: {
+              tasks: true
+            }
+          }
+        }
+      },
     },
   });
 };
