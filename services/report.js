@@ -14,7 +14,10 @@ const getReports = async (query) => {
     where: query,
     include: {
       tasks: true,
-    }
+    },
+    orderBy: {
+      id: "desc",
+    },
   });
 };
 
